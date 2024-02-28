@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    font-family: "Exo 2", sans-serif;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+/* Main container */
+.main-timer-container {
+    width: 200px;
+    height: 300px;
+    background-color: white;
+    border-radius: 1rem;
+    border: 3px solid black;
+    padding: 1rem;
+    margin: auto;
+    text-align: center;
+    cursor: default;
+}
+
+/* Name of the app at top */
+.timer-header {
+    margin: 0 0 1rem 0;
+}
+
+/* Timer styling */
+.timer {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 1rem 0;
+}
+
+.timer input, .timer p, #hrs, #min, #sec{
+    font-size: 2rem;
+    width: 55px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    border: none;
+}
+
+/* Timer Input container */
+.main-input {
+    margin: 0 0 1rem 0;
+    border: 2px solid black;
+    border-radius: 0.4rem;
+    padding: 5px 0 5px 0;
+}
+
+.inputs, .inputs-tags {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.inputs input {
+    width: 50px;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 30px;
+    text-align: center;
+}
+
+.inputs-tags p {
+    display: inline;
+}
+
+/* Icon container */
+.main-icon-container {
+    margin: 0 0 1rem 0;
+}
+
+#play_btn, #reset_btn, #pause_btn {
+    background-color: transparent;
+    border: none;
+    color: black;
+    padding: unset;
+    margin: unset;
+    cursor: pointer;
+}
+
+.main-icon-container span {
+    font-size: 44px;
+}
+
+.main-icon-container span:hover {
+    color:grey
+}
+
+/* other */
