@@ -27,21 +27,12 @@ h1 {
 }
 
 /* Timer styling */
-.timer {
+.timer-display {
     display: flex;
-    justify-content: center;
-    margin: 0 0 1rem 0;
-}
-
-.timer input, .timer p, #hrs, #min, #sec{
+    justify-content: space-around;
+    align-content: center;
     font-size: 2rem;
-    width: 55px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
-    border: none;
+    margin: 0 0 1rem 0;
 }
 
 /* Timer Input container */
@@ -52,7 +43,12 @@ h1 {
     padding: 5px 0 5px 0;
 }
 
-.inputs, .inputs-tags {
+.inputs {
+    display: flex;
+    justify-content: center;
+}
+
+.inputs-tags {
     display: flex;
     justify-content: space-evenly;
 }
