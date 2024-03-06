@@ -21,6 +21,18 @@ function zeroFormat(time) {
 	return time < 10 ? `0${time}` : `${time}`;
 }
 
+function saveTimerState() {
+    localStorage.setItem('countdownEndTime', countdownDate);
+}
+
+function loadTimerState() {
+    const endTime = localStorage.getItem('countdownEndTime');
+    if (endTime) {
+        countdownDate = parseInt(endTime);
+        startCountdown();
+    }
+}
+
 function startCountdown() {
 	const now = new Date().getTime(),
 		difference = Math.ceil((countdownDate - now) / 1000);
@@ -39,6 +51,7 @@ function startCountdown() {
 	hoursElem.innerHTML = zeroFormat(hours);
 	minutesElem.innerHTML = zeroFormat(minutes);
 	secondsElem.innerHTML = zeroFormat(seconds);
+	saveTimerState();
 }
 
 function pauseCountdown() {
@@ -77,3 +90,5 @@ resetBtn.addEventListener("click", () => {
 	minutesElem.innerHTML = zeroFormat(0);
 	secondsElem.innerHTML = zeroFormat(0);
 })
+
+loadTimerState();
