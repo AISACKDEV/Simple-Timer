@@ -11,6 +11,18 @@ var playBtn = document.getElementById("play_btn"),
 resetBtn.style.display = 'none';
 pauseBtn.style.display = 'none';
 
+chrome.notifications.getPermissionLevel(function(permissionLevel) {
+    if (permissionLevel === "granted") {
+        console.log("Notification permission granted");
+        // Do something when permission is granted
+    } else if (permissionLevel === "denied") {
+        console.log("Notification permission denied");
+        // Handle denied permission
+    } else {
+        console.log("Notification permission not yet determined");
+        // Handle default or undecided permission
+    }
+});
 
 //some variables to get the hrs, min and sec to be displayed and some others for the timer functionality.
 let hoursElem = document.getElementById("hrs"),
@@ -37,14 +49,14 @@ function loadTimerState() {
 		inputContainer.style.display = 'none';
 		resetBtn.style.display = 'inline';
 		playBtn.style.display = 'none';
-        if (countdownDate > new Date().getTime()) {
-            startCountdown();
+        if (countdownDate > new Date().getTime()) { // Check if countdown date is in the future
+            startCountdown(); // If so, start the countdown
             timerInterval = setInterval(startCountdown, 1000);
         } else {
 			inputContainer.style.display = 'block';
 			resetBtn.style.display = 'none';
 			playBtn.style.display = 'inline';
-            pauseCountdown();
+            pauseCountdown(); // Pause the countdown
         }
     }
 }
@@ -59,6 +71,7 @@ function startCountdown() {
         inputContainer.style.display = 'block';
         resetBtn.style.display = 'none';
         playBtn.style.display = 'inline';
+		console.log("notification after this log");
 		return notify();
 	}
 
@@ -111,6 +124,7 @@ resetBtn.addEventListener("click", () => {
 	playBtn.style.display = 'inline';
 	resetBtn.style.display = 'none';
 	pauseCountdown();
+	localStorage.removeItem('countdownEndTime');
 })
 
 //calling the loadTimerState function in order to continue the remaining time if there's any.

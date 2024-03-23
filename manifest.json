@@ -11,6 +11,13 @@
         "default_popup": "index.html"
     },
     "permissions": [
-        "storage"
-    ]
+        "storage",
+        "tabs",
+        "activeTab",
+        "scripting",
+        "notifications"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    }
 }
