@@ -70,7 +70,6 @@ function startCountdown() {
 	minutesElem.innerHTML = zeroFormat(minutes);
 	secondsElem.innerHTML = zeroFormat(seconds);
 	saveTimerState();
-	console.log("timer passing here");
 }
 
 //this function pauses the timer and reset it to 0.
