@@ -23,7 +23,7 @@ let hrsOutputElem = document.getElementById("output-hrs"),
 function saveInputState() {
 	localStorage.setItem('hrsInputLocalStoraged', zeroFormat(Math.floor(hrsInputElem.value)));
 	localStorage.setItem('minInputLocalStoraged', zeroFormat(Math.floor(minInputElem.value)));
-	localStorage.setItem('secInputLocalStoraged', zeroFormat(Math.floor(secInputElem.value)));
+	localStorage.setItem('secInputLocalStoraged', zeroFormat(Math.floor     (secInputElem.value)));
 }
 
 function saveOutputState() {
@@ -34,7 +34,7 @@ function saveOutputState() {
 
 //this function saves the future time in which the timer will end in the local storage. 
 function saveTimerState() {
-    localStorage.setItem('countdownEndTime', countdownDate);
+	localStorage.setItem('countdownEndTime', countdownDate);
 }
 
 //this function adds a "0" from 0-9 in order to maintain the two digit display.
@@ -103,9 +103,9 @@ function startCountdown() {
 		difference = Math.ceil((countdownDate - now) / 1000);
 
 	if (difference <= 0) {
-        inputTimerContainer.style.display = 'block';
-        resetBtnTimer.style.display = 'none';
-        playBtnTimer.style.display = 'inline';
+		inputTimerContainer.style.display = 'block';
+		resetBtnTimer.style.display = 'none';
+		playBtnTimer.style.display = 'inline';
 		pauseBtnTimer.style.display = 'none';
 		pauseCountdown();
 		deleteAllTimerState();

@@ -181,6 +181,7 @@
 
 #notification-status-message {
     font-family: "Exo 2", sans-serif;
+    display: none;
     background-color: #FFD580;
     text-align: center;
     padding: 5px;

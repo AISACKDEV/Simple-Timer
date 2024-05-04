@@ -5,7 +5,7 @@ function notify() {
     new Notification('Timer', {
         body: `Time out!`,
         requireInteraction: true,
-        icon: `Images/timer_icon.png`
+        icon: `/img/timer_icon.png`
     })
 }
 
@@ -15,46 +15,46 @@ function saveStatusFromNotificationsButton() {
 }
 
 function loadStatusFromNotificationsButton() {
-    var checked = JSON.parse(localStorage.getItem('NotificationStatus'));
+    var statusChecked = JSON.parse(localStorage.getItem('NotificationStatus'));
     
-    if (checked) {
+    if (statusChecked) {
         Notification.requestPermission().then((res) => {
-            if (res === 'granted') {
-                notificationCheckboxCurrent.checked = true;
-                notificationCheckboxCurrent.disabled = true;
-            } else {
-                notificationCheckboxCurrent.checked = false;
-                saveStatusFromNotificationsButton();
-                if (res === 'denied') {
-                    notificationStatusMessage.textContent = "Notifications are blocked. Please enable them in your browser settings.";
-                } else {
-                    notificationStatusMessage.textContent = "Notification permission is set to default. Please provide permission.";
-                }
-            }
+            updateButtonState(res);
         });
     } else {
         notificationCheckboxCurrent.checked = false;
     }
 }
 
+function updateButtonState(permission) {
+    if (permission === 'granted') {
+        notificationCheckboxCurrent.checked = true;
+        notificationCheckboxCurrent.disabled = true;
+        notificationStatusMessage.textContent = "";
+        notificationStatusMessage.style.display = 'none';
+    } else if (permission === 'denied') {
+        notificationStatusMessage.style.display = 'block';
+        notificationCheckboxCurrent.checked = false;
+        notificationStatusMessage.textContent = "Notifications are blocked. Please enable them in your browser settings.";
+    } else if (permission === 'default') {
+        notificationStatusMessage.style.display = 'block';
+        notificationCheckboxCurrent.checked = false;
+        notificationStatusMessage.textContent = "Notification permission is set to default. Please provide permission.";
+    }
+}
+
 notificationCheckboxCurrent.addEventListener('click', function () {
     if (notificationCheckboxCurrent.checked == true) {
         Notification.requestPermission().then((res) => {
-            if (res === 'granted') {
-                saveStatusFromNotificationsButton();
-                notificationCheckboxCurrent.checked = true;
-                notificationCheckboxCurrent.disabled = true;
-                notificationStatusMessage.textContent = "";
-            } else if (res === 'denied') {
-                notificationCheckboxCurrent.checked = false;
-                notificationStatusMessage.textContent = "Notifications are blocked. Please enable them in your browser settings.";
-            } else if (res === 'default') {
-                alert("Notification permission not given");
-                notificationCheckboxCurrent.checked = false;
-                notificationStatusMessage.textContent = "Notification permission is set to default. Please provide permission.";
-            }
+            updateButtonState(res);
+            saveStatusFromNotificationsButton();
         });
     }
+});
+
+// Listen for changes in notification permission
+Notification.requestPermission().then((permission) => {
+    updateButtonState(permission);
 });
 
 loadStatusFromNotificationsButton();
