@@ -7,7 +7,13 @@ function notify() {
         requireInteraction: true,
         icon: `/img/timer_icon.png`
     })
+    playSound('/mp3/notification_sound.mp3');
 }
+
+function playSound(url) {
+    const audio = new Audio(url);
+    audio.play();
+  }
 
 function saveStatusFromNotificationsButton() {
     var notificationCheckboxForLocalStorage = document.getElementById('notifications-toggle');

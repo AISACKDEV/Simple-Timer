@@ -15,7 +15,7 @@ let hrsOutputElem = document.getElementById("output-hrs"),
 	minOutputElem = document.getElementById("output-min"),
 	secOutputElem = document.getElementById("output-sec"),
 	hrsInputElem = document.querySelector("#input-hrs"),
-	minInputElem = document.querySelector("#input-min"),
+		minInputElem = document.querySelector("#input-min"),
 	secInputElem = document.querySelector("#input-sec"),
 	timerInterval,
 	countdownDate;
@@ -32,7 +32,7 @@ function saveOutputState() {
 	localStorage.setItem('secOutputLocalStoraged', secOutputElem.textContent);
 }
 
-//this function saves the future time in which the timer will end in the local storage. 
+//this function saves the future time in which the timer will end in the local storage.
 function saveTimerState() {
 	localStorage.setItem('countdownEndTime', countdownDate);
 }
@@ -75,8 +75,8 @@ function loadTimerState() {
 			timerInterval = setInterval(startCountdown, 1000);
 		}
 	} else {
-		const checkPausehrs = parseInt(localStorage.getItem("hrsOutputLocalStoraged")), 
-			checkPausemin = parseInt(localStorage.getItem("minOutputLocalStoraged")), 
+		const checkPausehrs = parseInt(localStorage.getItem("hrsOutputLocalStoraged")),
+			checkPausemin = parseInt(localStorage.getItem("minOutputLocalStoraged")),
 			checkPausesec = parseInt(localStorage.getItem("secOutputLocalStoraged"));
 		if (checkPausehrs === 0 && checkPausemin === 0 && checkPausesec === 0) {
 			inputTimerContainer.style.display = 'block';
@@ -138,7 +138,7 @@ playBtnTimer.addEventListener("click", () => {
 		minOutputLocal = parseInt(localStorage.getItem('minOutputLocalStoraged')) * 60,
 		secOutputLocal = parseInt(localStorage.getItem('secOutputLocalStoraged'));
 
-	if (hrsInputLocal <= 0 && minInputLocal <= 0 && secInputLocal <= 0) { 
+	if (hrsInputLocal <= 0 && minInputLocal <= 0 && secInputLocal <= 0) {
 		pauseCountdown();
 	} else {
 		if (hrsOutputLocal  > 0 || minOutputLocal  > 0 || secOutputLocal  > 0) {
